@@ -78,27 +78,27 @@ public class Springbootdemo01Application {
         resultList.clear();
 
         BinaryTree01.levelDemo07(list06.get(0),resultList);
-        System.out.println("========07层序遍历:"+resultList);
+        System.out.println("========07.层序遍历:"+resultList);
         resultList.clear();
 
         //7.q27二叉树的镜像
         BinaryTree01.minioTree(list06.get(0));
         BinaryTree01.levelDemo07(list06.get(0),resultList);
-        System.out.println("========镜像后，层序遍历:"+resultList);
+        System.out.println("========08.镜像后，层序遍历:"+resultList);
         resultList.clear();
 
         BinaryTree01.minioTree(list06.get(0));
         BinaryTree01.levelDemo07(list06.get(0),resultList);
-        System.out.println("========还原二叉树，镜像前，层序遍历:"+resultList);
+        System.out.println("========08.还原二叉树，镜像前，层序遍历:"+resultList);
         resultList.clear();
 
         //8.q28. 对称的二叉树
         boolean balance = BinaryTree01.isBalance(list06.get(0));
-        System.out.println("========是否为对称二叉树:"+balance);
+        System.out.println("========09.是否为对称二叉树:"+balance);
 
         //34. 二叉树中和为某一值的路径
         ArrayList<List<Integer>> paths = BinaryTree01.findTargetPath(list06.get(0), 10);
-        System.out.println("========和为target==10的路径:"+paths.toString());
+        System.out.println("========10.和为target==10的路径:"+paths.toString());
 
         SpringApplication.run(Springbootdemo01Application.class, args);
     }
