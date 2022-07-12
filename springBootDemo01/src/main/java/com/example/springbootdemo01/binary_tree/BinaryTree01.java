@@ -1,7 +1,6 @@
 package com.example.springbootdemo01.binary_tree;
 
 import com.example.springbootdemo01.common.TreeNode;
-import sun.reflect.generics.tree.Tree;
 
 import java.util.*;
 
@@ -407,6 +406,129 @@ public class BinaryTree01 {
         //如果一直遍历到叶子节点都不符合，那么把该节点从链表末尾删除；
         path.removeLast();
         return allPaths;
+    }
+
+    /**
+     * 二叉搜索树 的公共祖先(1)
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        List<TreeNode> path_p = getPath(root, p);
+        List<TreeNode> path_q = getPath(root, q);
+        TreeNode ancestor = null;
+        for (int i = 0; i < path_p.size() && i < path_q.size(); ++i) {
+            if (path_p.get(i) == path_q.get(i)) {
+                ancestor = path_p.get(i);//找到两个路径中最后一个相同的节点。
+            } else {
+                break;
+            }
+        }
+        return ancestor;
+    }
+
+    //获取二叉搜索树从根节点到某一节点的路径（我们默认认为二叉搜索树没有重复元素。即定义：左子树 < root < 右子树）
+    public static List<TreeNode> getPath(TreeNode root, TreeNode target) {
+        List<TreeNode> path = new ArrayList<TreeNode>();
+        TreeNode node = root;
+        while (node.getValue() != target.getValue()) {
+            path.add(node);
+            if (target.getValue() < node.getValue()) {
+                node = node.getLeft();
+            } else {
+                node = node.getRight();
+            }
+        }
+        path.add(node);
+        return path;
+    }
+
+    /**
+     * 二叉树 的公共祖先(2)   递归法
+     * 写递归的时候为了避免想的太复杂，可以用特指法，简化一个树的实例，根据这个实例写逻辑和递归。
+     *
+     * 思路：
+     * 1、在左、右子树中分别查找是否包含p或q，如果（两种情况：左子树包含p，右子树包含q/左子树包含q，右子树包含p），
+     *   那么此时的根节点就是最近公共祖先
+     * 2、如果左子树包含p和q，那么到root->left中查找，最近公共祖先在左子树里面
+     * 3、如果右子树包含p和q，那么到root->right中查找，最近公共祖先在右子树里面
+     * 4、注意：不可能left和right的返回值同时都是nullptr
+     */
+    public static TreeNode lowestCommonAncestorIIMethodOne(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || p == root || q == root) {//出口
+            return root;
+        }
+
+        //p或q是否在左子树 ？ 返回root
+        TreeNode left = lowestCommonAncestorIIMethodOne(root.getLeft(), p, q);
+        //p或q是否在右子树 ？ 返回root
+        TreeNode right = lowestCommonAncestorIIMethodOne(root.getRight(), p, q);
+
+        //p、q左子树和右子树各一个
+        if (left!=null && right!=null) {
+            return root;
+        }
+
+        //都在左子树或都在右子树
+        return left == null ? right : left;
+    }
+
+    /**
+     * 二叉树 的公共祖先(2)   非递归
+     *
+     * 1、找到root->p的路径
+     * 2、找到root->q的路径
+     * 3、两条路径求最后一个相交节点
+     */
+    public static TreeNode lowestCommonAncestorIIMethodTwo(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || p == root || q == root) {
+            return root;
+        }
+
+        List<TreeNode> pPath = findPath(root, p);
+        List<TreeNode> qPath = findPath(root, q);
+
+        TreeNode common = null;
+        for (int i=0, j=0; i<pPath.size() && j<qPath.size(); i++,j++) {
+            if (pPath.get(i) == qPath.get(j)) {
+                common = pPath.get(i);//获取路径中最后一个相同的节点
+            }
+        }
+
+        return common;
+    }
+
+    private static List<TreeNode> findPath(TreeNode root, TreeNode node) {
+        List<TreeNode> path = new ArrayList<>();
+        dfs(root, node, new ArrayList<>(), path);
+        return path;
+    }
+
+    /**
+     * 深度优先 - 先序。 ---> 获取路径，从根节点到指定节点的路径。（可以，所有都走了一遍，条件过滤掉不满足的即可）
+     *
+     * @param root
+     * @param node
+     * @param tmp
+     * @param path
+     */
+    private static void dfs(TreeNode root, TreeNode node, List<TreeNode> tmp, List<TreeNode> path) {
+        if (root == null) {
+            return;
+        }
+
+        tmp.add(root);
+
+        if (root == node) {
+            path.addAll(new ArrayList<>(tmp));
+        }
+
+        dfs(root.getLeft(), node, tmp, path);
+        dfs(root.getRight(), node, tmp, path);
+
+        tmp.remove(tmp.size()-1);
     }
 
 }

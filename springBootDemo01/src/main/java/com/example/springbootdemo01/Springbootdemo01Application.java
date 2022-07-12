@@ -10,6 +10,13 @@ import java.util.*;
 @SpringBootApplication
 public class Springbootdemo01Application {
 
+    static class TreeNodeNew {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNodeNew(int x) { val = x; }
+    }
+
     public static void main(String[] args) {
         //1. 107. 二叉树的层序遍历 II
         Integer[] data = new Integer[]{1,2,3,4,5,6};
@@ -96,9 +103,30 @@ public class Springbootdemo01Application {
         boolean balance = BinaryTree01.isBalance(list06.get(0));
         System.out.println("========09.是否为对称二叉树:"+balance);
 
-        //34. 二叉树中和为某一值的路径
+        //9.34. 二叉树中和为某一值的路径
         ArrayList<List<Integer>> paths = BinaryTree01.findTargetPath(list06.get(0), 10);
         System.out.println("========10.和为target==10的路径:"+paths.toString());
+
+        //6 2 8 0 4
+        //11（1）.68.二叉搜索树的最近公共祖先
+        Integer[] data10 = new Integer[]{6,2,8,0,4};
+        ArrayList<TreeNode> list10 = new ArrayList<>();
+        create(data10,list10);
+        TreeNode treeNodeZero = new TreeNode(0);
+        TreeNode treeNodeFour = new TreeNode(4);
+        TreeNode treeNode = BinaryTree01.lowestCommonAncestor(list10.get(0), treeNodeZero, treeNodeFour);
+        System.out.println("========11.二叉搜索树 最近公共祖先:"+treeNode.getValue());
+
+        //10（2）.68.二叉树 的最近公共祖先
+        TreeNode root = new TreeNode(1);
+        TreeNode right = new TreeNode(2);
+        root.setRight(right);
+        TreeNode left = new TreeNode(3);
+        root.setLeft(left);
+        TreeNode ancestorIIMethodOne = BinaryTree01.lowestCommonAncestorIIMethodOne(root, left, right);
+        TreeNode ancestorIIMethodTwo = BinaryTree01.lowestCommonAncestorIIMethodTwo(root, left, right);
+        System.out.println("==========12.二叉树 最近公共祖先（递归）："+ancestorIIMethodOne.getValue());
+        System.out.println("==========12.二叉树 最近公共祖先（非 递归）："+ancestorIIMethodTwo.getValue());
 
         SpringApplication.run(Springbootdemo01Application.class, args);
     }
