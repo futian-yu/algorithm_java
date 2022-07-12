@@ -117,7 +117,7 @@ public class Springbootdemo01Application {
         TreeNode treeNode = BinaryTree01.lowestCommonAncestor(list10.get(0), treeNodeZero, treeNodeFour);
         System.out.println("========11.二叉搜索树 最近公共祖先:"+treeNode.getValue());
 
-        //10（2）.68.二叉树 的最近公共祖先
+        //11（2）.68.二叉树 的最近公共祖先
         TreeNode root = new TreeNode(1);
         TreeNode right = new TreeNode(2);
         root.setRight(right);
@@ -127,6 +127,13 @@ public class Springbootdemo01Application {
         TreeNode ancestorIIMethodTwo = BinaryTree01.lowestCommonAncestorIIMethodTwo(root, left, right);
         System.out.println("==========12.二叉树 最近公共祖先（递归）："+ancestorIIMethodOne.getValue());
         System.out.println("==========12.二叉树 最近公共祖先（非 递归）："+ancestorIIMethodTwo.getValue());
+
+        //12. 54.二叉搜索树的第k大节点
+        Integer[] data12 = new Integer[]{4,2,5,1,3};
+        ArrayList<TreeNode> list12 = new ArrayList<>();
+        create(data12,list12);
+        int kthLargest = BinaryTree01.kthLargest(list12.get(0), 4);
+        System.out.println("==========13.二叉搜索树，第k大的数字："+kthLargest);
 
         SpringApplication.run(Springbootdemo01Application.class, args);
     }

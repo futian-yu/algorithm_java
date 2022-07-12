@@ -531,4 +531,33 @@ public class BinaryTree01 {
         tmp.remove(tmp.size()-1);
     }
 
+    /**
+     * 54.二叉搜索树的第k大节点(简单：中序遍历，遍历出的结果是从小到大。再get(length - k)个元素)
+     * @param root
+     * @param k
+     * @return
+     */
+    public static int kthLargest(TreeNode root, int k) {
+        List<TreeNode> treeNodes = new LinkedList<>();
+        dfs(root,treeNodes);
+        return treeNodes.get(treeNodes.size()-k).getValue();
+    }
+
+    /**
+     * 递归中序遍历 - 二叉搜索树，结果放到list中
+     *
+     * @param root
+     */
+    static void dfs(TreeNode root,List<TreeNode> treeNodes) {
+        //出口
+        if (root == null){
+            return;
+        }
+        //左中右
+        dfs(root.getLeft(),treeNodes);
+        treeNodes.add(root);
+        dfs(root.getRight(),treeNodes);
+    }
+
+
 }
