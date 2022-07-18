@@ -293,21 +293,22 @@ public class BinaryTree01 {
 
     /**
      * 二叉树的层序遍历
+     *
      * @param root
      * @param list
      */
-    public static void levelDemo07(TreeNode root,ArrayList<Integer> list){
-        if (root != null){
+    public static void levelDemo07(TreeNode root, ArrayList<Integer> list) {
+        if (root != null) {
             LinkedList<TreeNode> queue = new LinkedList<>();
             queue.offer(root);
-            while(!queue.isEmpty()){
+            while (!queue.isEmpty()) {
                 TreeNode node = queue.poll();
                 list.add(node.getValue());
-                if (node.getLeft()!=null){
+                if (node.getLeft() != null) {
                     queue.offer(node.getLeft());
                 }
 
-                if (node.getRight()!=null){
+                if (node.getRight() != null) {
                     queue.offer(node.getRight());
                 }
             }
@@ -317,13 +318,13 @@ public class BinaryTree01 {
 
     /**
      * q27二叉树的镜像
-     *
+     * <p>
      * 思路: 递归一直遍历得到叶子节点，叶子节点的左右镜像交换后，继续往上一层，这时只要交换左右整颗树即可，如此继续往上循环。
      *
      * @param root
      */
-    public static TreeNode minioTree(TreeNode root){
-        if (root==null){
+    public static TreeNode minioTree(TreeNode root) {
+        if (root == null) {
             return null;
         }
 
@@ -343,8 +344,8 @@ public class BinaryTree01 {
      * @param root
      * @return
      */
-    public static boolean isBalance(TreeNode root){
-        if (root==null){
+    public static boolean isBalance(TreeNode root) {
+        if (root == null) {
             //空树默认为对称
             return true;
         }
@@ -353,27 +354,28 @@ public class BinaryTree01 {
 
     /**
      * 双指针递归判断是否对称思想
+     *
      * @param p
      * @param q
      * @return
      */
-    public static boolean symmetricTree(TreeNode p,TreeNode q){
+    public static boolean symmetricTree(TreeNode p, TreeNode q) {
         //1.出口（出口好好判断一下，一般是上一层函数的p.getLeft()为null传进来，在这一层函数就是p==null，这一点一定要注意）
         //确定好递归参数后，这里出口怎么写是该递归函数的关键。
-        if (p==null && q==null){
+        if (p == null && q == null) {
             return true;
         }
-        if (p==null || q==null){
+        if (p == null || q == null) {
             return false;
         }
 
         //2.条件：递归，root两个指针p,q;  p左孩子==q右孩子 && p右孩子==p左孩子
-        return p.getValue()==q.getValue()
-                && symmetricTree(p.getLeft(),q.getRight())
-                && symmetricTree(p.getRight(),q.getLeft());
+        return p.getValue() == q.getValue()
+                && symmetricTree(p.getLeft(), q.getRight())
+                && symmetricTree(p.getRight(), q.getLeft());
     }
 
-    public static ArrayList<List<Integer>> findTargetPath(TreeNode root,int target){
+    public static ArrayList<List<Integer>> findTargetPath(TreeNode root, int target) {
 
         ArrayList<List<Integer>> allPaths = new ArrayList<>();
         LinkedList<Integer> path = new LinkedList<>();
@@ -382,27 +384,28 @@ public class BinaryTree01 {
     }
 
     /**
-     *  q34. 二叉树中和为某一值的路径
+     * q34. 二叉树中和为某一值的路径
+     *
      * @param root
      * @param target
      * @param allPaths
      * @param path
      * @return
      */
-    public static ArrayList<List<Integer>> getPath(TreeNode root,int target,ArrayList<List<Integer>> allPaths,LinkedList<Integer> path){
-        if (root == null){
+    public static ArrayList<List<Integer>> getPath(TreeNode root, int target, ArrayList<List<Integer>> allPaths, LinkedList<Integer> path) {
+        if (root == null) {
             return null;
         }
 
         path.add(root.getValue());
         target = target - root.getValue();
 
-        if (root.getLeft()==null && root.getRight() == null && target == 0){
+        if (root.getLeft() == null && root.getRight() == null && target == 0) {
             allPaths.add(new LinkedList<>(path));//注意，这里一定要把新开辟一个链表，然后把path作为构造函数参数传进去，否则在最后一行就被清零了。
         }
 
-        getPath(root.getLeft(),target,allPaths,path);
-        getPath(root.getRight(),target,allPaths,path);
+        getPath(root.getLeft(), target, allPaths, path);
+        getPath(root.getRight(), target, allPaths, path);
         //如果一直遍历到叶子节点都不符合，那么把该节点从链表末尾删除；
         path.removeLast();
         return allPaths;
@@ -410,6 +413,7 @@ public class BinaryTree01 {
 
     /**
      * 二叉搜索树 的公共祖先(1)
+     *
      * @param root
      * @param p
      * @param q
@@ -448,10 +452,10 @@ public class BinaryTree01 {
     /**
      * 二叉树 的公共祖先(2)   递归法
      * 写递归的时候为了避免想的太复杂，可以用特指法，简化一个树的实例，根据这个实例写逻辑和递归。
-     *
+     * <p>
      * 思路：
      * 1、在左、右子树中分别查找是否包含p或q，如果（两种情况：左子树包含p，右子树包含q/左子树包含q，右子树包含p），
-     *   那么此时的根节点就是最近公共祖先
+     * 那么此时的根节点就是最近公共祖先
      * 2、如果左子树包含p和q，那么到root->left中查找，最近公共祖先在左子树里面
      * 3、如果右子树包含p和q，那么到root->right中查找，最近公共祖先在右子树里面
      * 4、注意：不可能left和right的返回值同时都是nullptr
@@ -467,7 +471,7 @@ public class BinaryTree01 {
         TreeNode right = lowestCommonAncestorIIMethodOne(root.getRight(), p, q);
 
         //p、q左子树和右子树各一个
-        if (left!=null && right!=null) {
+        if (left != null && right != null) {
             return root;
         }
 
@@ -477,7 +481,7 @@ public class BinaryTree01 {
 
     /**
      * 二叉树 的公共祖先(2)   非递归
-     *
+     * <p>
      * 1、找到root->p的路径
      * 2、找到root->q的路径
      * 3、两条路径求最后一个相交节点
@@ -491,7 +495,7 @@ public class BinaryTree01 {
         List<TreeNode> qPath = findPath(root, q);
 
         TreeNode common = null;
-        for (int i=0, j=0; i<pPath.size() && j<qPath.size(); i++,j++) {
+        for (int i = 0, j = 0; i < pPath.size() && j < qPath.size(); i++, j++) {
             if (pPath.get(i) == qPath.get(j)) {
                 common = pPath.get(i);//获取路径中最后一个相同的节点
             }
@@ -528,19 +532,20 @@ public class BinaryTree01 {
         dfs(root.getLeft(), node, tmp, path);
         dfs(root.getRight(), node, tmp, path);
 
-        tmp.remove(tmp.size()-1);
+        tmp.remove(tmp.size() - 1);
     }
 
     /**
      * 54.二叉搜索树的第k大节点(简单：中序遍历，遍历出的结果是从小到大。再get(length - k)个元素)
+     *
      * @param root
      * @param k
      * @return
      */
     public static int kthLargest(TreeNode root, int k) {
         List<TreeNode> treeNodes = new LinkedList<>();
-        dfs(root,treeNodes);
-        return treeNodes.get(treeNodes.size()-k).getValue();
+        dfs(root, treeNodes);
+        return treeNodes.get(treeNodes.size() - k).getValue();
     }
 
     /**
@@ -548,16 +553,85 @@ public class BinaryTree01 {
      *
      * @param root
      */
-    static void dfs(TreeNode root,List<TreeNode> treeNodes) {
+    static void dfs(TreeNode root, List<TreeNode> treeNodes) {
         //出口
-        if (root == null){
+        if (root == null) {
             return;
         }
         //左中右
-        dfs(root.getLeft(),treeNodes);
+        dfs(root.getLeft(), treeNodes);
         treeNodes.add(root);
-        dfs(root.getRight(),treeNodes);
+        dfs(root.getRight(), treeNodes);
     }
 
+    /**
+     * 102. 二叉树的层序遍历
+     * <p>
+     * 思路： 1. 遍历每一层，存储每一层的节点值，汇总输出。
+     * 2. 每一层中有个逻辑判断，从左往右 or 从右往左； 顺序控制输入输出用双端队列实现，LinkedList其实就是一个双端队列。
+     */
+    public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> ans = new LinkedList<List<Integer>>();
+        if (root == null) {
+            return ans;
+        }
+
+        Queue<TreeNode> nodeQueue = new ArrayDeque<TreeNode>();
+        nodeQueue.offer(root);
+        boolean isOrderLeft = true;
+
+        // 将每一层的节点元素添加到 nodeQueue中
+        while (!nodeQueue.isEmpty()) {
+            Deque<Integer> levelList = new LinkedList<Integer>();
+            int size = nodeQueue.size();
+            // 遍历某一层的节点，并将节点放入双端队列中，放的顺序根据标志来判断。
+            for (int i = 0; i < size; ++i) {
+                TreeNode curNode = nodeQueue.poll();
+                if (isOrderLeft) {
+                    levelList.offerLast(curNode.getValue());
+                } else {
+                    levelList.offerFirst(curNode.getValue());
+                }
+                if (curNode.getLeft() != null) {
+                    nodeQueue.offer(curNode.getLeft());
+                }
+                if (curNode.getRight() != null) {
+                    nodeQueue.offer(curNode.getRight());
+                }
+            }
+            ans.add(new LinkedList<Integer>(levelList));
+            isOrderLeft = !isOrderLeft;
+        }
+
+        return ans;
+    }
+
+    /**
+     * 113.路径总和 II（中等）
+     * 思路：能够递归写出root节点到叶子节点的路径，基本就ok了。
+     * @param root
+     * @param targetSum
+     * @return
+     */
+    public static List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        List<List<Integer>> ret = new LinkedList<List<Integer>>();
+        Deque<Integer> path = new LinkedList<Integer>();
+        dfs(root, targetSum, ret, path);
+        return ret;
+    }
+
+    public static void dfs(TreeNode root, int targetSum, List<List<Integer>> ret, Deque<Integer> path) {
+        if (root == null) {
+            return;
+        }
+        path.offerLast(root.getValue());
+        targetSum -= root.getValue();
+        if (root.getLeft() == null && root.getRight() == null && targetSum == 0) {
+            ret.add(new LinkedList<Integer>(path));
+        }
+        dfs(root.getLeft(), targetSum, ret, path);
+        dfs(root.getRight(), targetSum, ret, path);
+        path.pollLast();
+    }
 
 }

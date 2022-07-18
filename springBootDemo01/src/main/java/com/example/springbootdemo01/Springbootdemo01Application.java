@@ -18,6 +18,18 @@ public class Springbootdemo01Application {
     }
 
     public static void main(String[] args) {
+        //======================== 1. 二叉树相关 ========================
+        binaryTree01();
+
+        SpringApplication.run(Springbootdemo01Application.class, args);
+    }
+
+    /**
+     *  01. 二叉树相关
+     *
+     */
+    public static void binaryTree01(){
+
         //1. 107. 二叉树的层序遍历 II
         Integer[] data = new Integer[]{1,2,3,4,5,6};
         ArrayList<TreeNode> list = new ArrayList<>();
@@ -135,7 +147,14 @@ public class Springbootdemo01Application {
         int kthLargest = BinaryTree01.kthLargest(list12.get(0), 4);
         System.out.println("==========13.二叉搜索树，第k大的数字："+kthLargest);
 
-        SpringApplication.run(Springbootdemo01Application.class, args);
+        //13. q.102. 二叉树的层序遍历
+        List<List<Integer>> list13 = BinaryTree01.zigzagLevelOrder(list06.get(0));
+        System.out.println("=============13. q.102. 二叉树的层序遍历："+ list13.toString());
+
+        //14. 113. 路径总和 II（中等）
+        List<List<Integer>> lists14 = BinaryTree01.pathSum(list06.get(0), 10);
+        System.out.println("=============14. 113. 路径总和 II（中等）:"+ lists14.toString());
+
     }
 
     /**
