@@ -44,10 +44,71 @@ public class Springbootdemo01Application {
         // 2)快速排序
         int array02[] = new int[]{4,2,10,6};
         qucikSort(array02,0,array02.length-1);
-        System.out.printf("=====快速排序:"+Arrays.toString(array02));
+        System.out.println("=====快速排序:"+Arrays.toString(array02));
+
+        //======================== 5. shizhan ========================
+        //1）huaweiod
+        convertWords("i am a student",2,3);
 
         SpringApplication.run(Springbootdemo01Application.class, args);
     }
+
+    /**
+     * 给定一个句子，句子中每个单词之间用空格隔开，给定一个单词范围，翻转范围内单词的顺序。如给定一个句子 i am a student. 给定单词范围 1 3，翻转后结果为 i student. a am
+     *
+     * 示例 输入 i am a student. 1 3
+     * 示例 输出 i student. a am
+     *
+     *
+     */
+    public static String convertWords(String s,int start,int end){
+        //s->数组，反转数据
+        String[] strings = s.split(" ");
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i=0;i<strings.length;i++){
+            //从start位置开始
+            if (i==start && i<end){
+                String temp = strings[start];
+                strings[start]=strings[end];
+                strings[end]=temp;
+
+                start++;
+                end--;
+            }
+            stringBuilder.append(strings[i]).append(" ");
+        }
+//        return stringBuilder.substring(0,stringBuilder.length()-1);
+        System.out.println("dancizhuanhuan======>"+stringBuilder.toString());
+        return stringBuilder.toString();
+    }
+
+    /**
+     * 100个人围成一个圈从1开始报数，输入数m，报到m的人退出，继续从1开始报，报到m继续退出依次下去直到剩余的人小于m不再报数，输出剩下人的位置。
+     *
+     * 输出字符串，剩下人用逗号分隔开
+     *
+     * @return
+     */
+    public static String baoshu(int m){
+        LinkedList<Integer> list = new LinkedList<>();
+        for (int i = 0; i < 100; i++) {
+            list.add(i);
+        }
+
+        for (int i = 0; i < 100; i++) {
+            if (i==m){
+
+            }
+
+
+        }
+
+
+
+        return null;
+    }
+
+
 
     /**
      * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
