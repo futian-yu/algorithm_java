@@ -26,9 +26,10 @@ public class Springbootdemo01Application {
 
         //======================== 2. Hash相关 ========================
         //1）twoSum
-        int[] nums = new int[]{1,4,7};int target = 11;
+        int[] nums = new int[]{1, 4, 7};
+        int target = 11;
         int[] twoSum01 = twoSum01(nums, target);
-        System.out.println("==========twosum:"+Arrays.toString(twoSum01));
+        System.out.println("==========twosum:" + Arrays.toString(twoSum01));
 
         //======================== 3. 滑动指针相关 ========================
 //        int adcccbabd = lengthOfLongestSubstring("adcccbabd");
@@ -36,9 +37,14 @@ public class Springbootdemo01Application {
 
         //======================== 4. 经典排序相关 ========================
         // 1）.冒泡排序
-        int array[] = new int[]{3,1,5,7};
+        int array[] = new int[]{3, 1, 5, 7};
         int[] bubbleSort = bubbleSort(array);
-        System.out.println("======:"+Arrays.toString(bubbleSort));
+        System.out.println("======冒泡排序:" + Arrays.toString(bubbleSort));
+
+        // 2)快速排序
+        int array02[] = new int[]{4,2,10,6};
+        qucikSort(array02,0,array02.length-1);
+        System.out.printf("=====快速排序:"+Arrays.toString(array02));
 
         SpringApplication.run(Springbootdemo01Application.class, args);
     }
@@ -88,18 +94,57 @@ public class Springbootdemo01Application {
         批注：错误，第二层循环的循环次数控制错误。冒泡需要交换的次数应该是越来越少，所以应该在第二层循环写循环条件：j<array.length-j,
         但是又因为长度为length的数组需要交换的次数为length-1次，所以j<arraty.length-i-1;
         */
-        for (int i=0;i< array.length;i++){
-            for (int j=0;j< array.length-j-1;j++){
-                if (array[j]>array[j+1]){
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - j - 1; j++) {
+                if (array[j] > array[j + 1]) {
                     //此处不要用函数封装方法，因为int作为方法参数，传进去的是副本，不会改变原值。
                     int temp;
                     temp = array[j];
-                    array[j]= array[j+1];
-                    array[j+1] = temp;
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                 }
             }
         }
         return array;
+    }
+
+    /**
+     * 手写快速排序
+     *
+     * 思路：key取left的值，首先从right开始移动右指针，找到第一个比key小的数；同理left向右移动，找到第一个
+     * 比key大的数，交换arr[l]和arr[r],循环处理。   跳出循环后，把key和left值交换一下，继续递归处理左右两边。
+     **/
+    public static void qucikSort(int arr[], int left, int right) {
+        if (arr == null || arr.length == 0) {
+            return;
+        }
+        if (left > right) {
+            return;
+        }
+        int key = arr[left];
+        int l = left;
+        int r = right;
+        while (l != r) {
+            while (arr[r] > key && l < r) {
+                r--;
+            }
+
+            while (arr[l] < key && l < r) {
+                l++;
+            }
+            if (l < r) {
+                //交换左右指针位置的值
+                int temp;
+                temp = arr[l];
+                arr[l] = arr[r];
+                arr[r] = temp;
+            }
+        }
+        //此时l=r;交换key和arr[l]/arr[r]的值
+        arr[l] = key;
+        key = l;
+        qucikSort(arr, 0, l - 1);
+        qucikSort(arr, l + 1, right);
     }
 
 
