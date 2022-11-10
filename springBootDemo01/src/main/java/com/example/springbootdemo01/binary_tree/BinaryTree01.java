@@ -8,6 +8,172 @@ import java.util.*;
  * 二叉树题目汇总
  */
 public class BinaryTree01 {
+
+
+
+
+    /**
+     * 后序 - 迭代
+     * @param root
+     * @return
+     */
+    public static void dfsDemoOne(TreeNode root, ArrayList<Integer> list) {
+        //中左右   中右左    左右中
+        if (root == null){
+            return;
+        }
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode treeNode = stack.pop();
+            list.add(treeNode.getValue());
+            if (treeNode.getLeft() != null){
+                stack.push(treeNode.getLeft());
+            }
+            if (treeNode.getRight() != null){
+                stack.push(treeNode.getRight());
+            }
+        }
+        //反转链表list。
+
+    }
+
+    /**
+     * 求二叉树的层平均值
+     * @param root
+     * @return
+     */
+    public static List<Double> averageOfLevelsOne(TreeNode root) {
+        List<Double> list = new LinkedList<>();
+        if (root == null){
+            return list;
+        }
+        //queue
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            int sum = 0;
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode treeNode = queue.poll();
+                int value = treeNode.getValue();
+                sum += value;
+                if (treeNode.getLeft() != null){
+                    queue.offer(treeNode.getLeft());
+                }
+                if (treeNode.getRight() != null){
+                    queue.offer(treeNode.getRight());
+                }
+            }
+            //Math函数除法。     手动调试一下，先别看答案。
+
+
+        }
+
+        return null;
+    }
+
+    /**
+     * 求二叉树的最小深度
+     * @param root
+     * @return
+     */
+    public static int minDepthOne(TreeNode root) {
+        if (root == null){
+            return 0;
+        }
+        if (root.getLeft() == null && root.getRight() == null){
+            return 1;
+        }
+        int depth = Math.min(minDepthOne(root.getLeft()), minDepthOne(root.getRight()));
+        return depth+1;
+    }
+
+    /**
+     * 二叉树的路径总和（返回boolean值，是否存在）
+     * @param root
+     * @return
+     */
+    public static boolean hasPathSumOne(TreeNode root, int targetSum) {
+        //出口分不太清，在递归过程中，什么时候可以确定这个boolean值？?
+        if (root == null){
+            return false;
+        }
+
+
+
+        return false;
+    }
+
+
+    /**
+     * 113.路径总和 II（中等）
+     * @param root
+     * @param targetSum
+     * @return
+     */
+    public static List<List<Integer>> pathSumOne(TreeNode root, int targetSum) {
+        //返回所有路径总和等于targetSum的路径。
+        //深度优先，感觉应该也是用栈，该怎么用呢？思路？
+
+
+        return null;
+    }
+
+    /**
+     * 257. 二叉树的所有路径
+     * 打印出二叉树的所有路径（根节点到叶子节点）
+     * <p>
+     *
+     * @param root
+     * @return
+     */
+    public static List<String> binaryTreePathsOne(TreeNode root) {
+
+        return null;
+    }
+
+    /**
+     * q27二叉树的镜像（返回一棵树，该树为原来树的镜像）
+     * <p>
+     *
+     * @param root
+     */
+    public static TreeNode minioTreeOne(TreeNode root) {
+        //递归的出口怎么判断？
+
+        return null;
+    }
+
+    /**
+     * q28. 对称的二叉树
+     *
+     * @param root
+     * @return
+     */
+    public static boolean isBalanceOne(TreeNode root) {
+
+        //递归条件是什么？   并不是(左子树对称&& 右子树对称&& 左子树root值==右子树root值)
+        //递归的出口怎么判断？
+
+        //卡在哪里？
+
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * 107. 二叉树的层序遍历 II
      * 给你二叉树的根节点 root ，返回其节点值 自底向上的层序遍历 。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
