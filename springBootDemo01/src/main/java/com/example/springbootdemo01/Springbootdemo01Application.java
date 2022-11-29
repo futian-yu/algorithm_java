@@ -23,6 +23,21 @@ public class Springbootdemo01Application {
     public static void main(String[] args) {
         //======================== 1. 二叉树相关 ========================
 //        binaryTree01();
+        //1. 107. 后序 - 迭代法
+        Integer[] data = new Integer[]{1, 2, 3};
+        ArrayList<TreeNode> list = new ArrayList<>();
+        create(data, list);
+        ArrayList<Integer> objectArrayList = new ArrayList<>();
+        BinaryTree01.dfsDemoOne(list.get(0),objectArrayList);
+        System.out.println("========01:" + objectArrayList.toString());
+
+        // 二叉树的层平均值
+        List<Double> doubles = BinaryTree01.averageOfLevelsOne(list.get(0));
+        System.out.println("========02:" + doubles.toString());
+
+        //二叉树的最小深度
+        int minDepthOne = BinaryTree01.minDepthOne(list.get(0));
+        System.out.println("========03:" + minDepthOne);
 
         //======================== 2. Hash相关 ========================
         //1）twoSum
@@ -50,7 +65,7 @@ public class Springbootdemo01Application {
         //1）huaweiod
         convertWords("i am a student",2,3);
 
-        SpringApplication.run(Springbootdemo01Application.class, args);
+//        SpringApplication.run(Springbootdemo01Application.class, args);
     }
 
     /**

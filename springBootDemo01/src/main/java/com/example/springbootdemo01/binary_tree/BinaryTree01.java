@@ -10,104 +10,111 @@ import java.util.*;
 public class BinaryTree01 {
 
 
-
-
     /**
      * 后序 - 迭代
+     *
      * @param root
      * @return
      */
     public static void dfsDemoOne(TreeNode root, ArrayList<Integer> list) {
         //中左右   中右左    左右中
-        if (root == null){
+        if (root == null) {
             return;
         }
         LinkedList<TreeNode> stack = new LinkedList<>();
         stack.push(root);
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             TreeNode treeNode = stack.pop();
             list.add(treeNode.getValue());
-            if (treeNode.getLeft() != null){
+            if (treeNode.getLeft() != null) {
                 stack.push(treeNode.getLeft());
             }
-            if (treeNode.getRight() != null){
+            if (treeNode.getRight() != null) {
                 stack.push(treeNode.getRight());
             }
         }
-        //反转链表list。
-
+        //反转链表list。----》复习手写一下反转列表。
+        Collections.reverse(list);
     }
 
     /**
      * 求二叉树的层平均值
+     *
      * @param root
      * @return
      */
     public static List<Double> averageOfLevelsOne(TreeNode root) {
         List<Double> list = new LinkedList<>();
-        if (root == null){
+        if (root == null) {
             return list;
         }
         //queue
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        while(!queue.isEmpty()){
-            int sum = 0;
+        while (!queue.isEmpty()) {
+            double sum = 0;
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 TreeNode treeNode = queue.poll();
                 int value = treeNode.getValue();
                 sum += value;
-                if (treeNode.getLeft() != null){
+                if (treeNode.getLeft() != null) {
                     queue.offer(treeNode.getLeft());
                 }
-                if (treeNode.getRight() != null){
+                if (treeNode.getRight() != null) {
                     queue.offer(treeNode.getRight());
                 }
             }
             //Math函数除法。     手动调试一下，先别看答案。
-
-
+            double ave = sum / size;
+            list.add(ave);
         }
-
-        return null;
+        return list;
     }
 
     /**
      * 求二叉树的最小深度
+     *
      * @param root
      * @return
      */
     public static int minDepthOne(TreeNode root) {
-        if (root == null){
+        if (root == null) {
             return 0;
         }
-        if (root.getLeft() == null && root.getRight() == null){
+        if (root.getLeft() == null && root.getRight() == null) {
             return 1;
         }
         int depth = Math.min(minDepthOne(root.getLeft()), minDepthOne(root.getRight()));
-        return depth+1;
+        return depth + 1;
     }
 
     /**
      * 二叉树的路径总和（返回boolean值，是否存在）
+     * 思路：方法1）把所有路径给塞到list中。计算各总和。 ----》方法1更有实战意义，如何收集路径？   还是递归，只是这个递归难写一点。
+     * 方法2）递归。
+     *
      * @param root
      * @return
      */
     public static boolean hasPathSumOne(TreeNode root, int targetSum) {
         //出口分不太清，在递归过程中，什么时候可以确定这个boolean值？?
-        if (root == null){
+        if (root == null) {
             return false;
         }
+        if (root.getLeft() == null && root.getRight() == null){
+            return root.getValue() == targetSum;
+        }
 
-
-
-        return false;
+        return hasPathSum(root.getLeft(), targetSum - root.getValue())
+                || hasPathSum(root.getRight(), targetSum - root.getValue());
     }
 
 
     /**
      * 113.路径总和 II（中等）
+     * ------------------》重刷
+     *
      * @param root
      * @param targetSum
      * @return
@@ -123,6 +130,8 @@ public class BinaryTree01 {
     /**
      * 257. 二叉树的所有路径
      * 打印出二叉树的所有路径（根节点到叶子节点）
+     *
+     * ------------------》重刷
      * <p>
      *
      * @param root
@@ -135,6 +144,8 @@ public class BinaryTree01 {
 
     /**
      * q27二叉树的镜像（返回一棵树，该树为原来树的镜像）
+     *
+     * ------------------》重刷
      * <p>
      *
      * @param root
@@ -148,12 +159,14 @@ public class BinaryTree01 {
     /**
      * q28. 对称的二叉树
      *
+     * ------------------》重刷
+     *
      * @param root
      * @return
      */
     public static boolean isBalanceOne(TreeNode root) {
 
-        //递归条件是什么？   并不是(左子树对称&& 右子树对称&& 左子树root值==右子树root值)
+        //递归条件是什么？   并不是(左子树对称&& 右子树对称&& 左子树root值==右子树root值；根节点相同，左子树的左孩子与右子树的右孩子、左子树的右孩子与右子树的左孩子)
         //递归的出口怎么判断？
 
         //卡在哪里？
@@ -162,17 +175,100 @@ public class BinaryTree01 {
     }
 
 
+/*    二叉树中和为某一值的路径
+      二叉搜索树的最近公共祖先
+    二叉树的最近公共祖先
+    二叉搜索树的第k大节点（看看即可）*/
+
+    /**
+     * q34. 二叉树中和为某一值的路径
+     *
+     * 先写返回list的吧，写完返回list的，将返回值改为List<String>的格式。
+     *
+     * @param root
+     * @param target
+     * @return
+     */
+    public static ArrayList<List<Integer>> findTargetPathOne(TreeNode root, int target) {
+        // 求出所有路径,自己添加要求，以->分隔开来   target
+        LinkedList<List<Integer>> lists = new LinkedList<>();
+
+        // 递归
+//        getPath(root,target,lists);
+
+        return null;
+    }
+
+//            1
+//        2       3
+//      4   5    6
+//  target = 8
+    private static void getPath(TreeNode root, int target, LinkedList<Integer> path, LinkedList<List<Integer>> lists) {
+        if (root == null){
+            return;
+        }
+        int value = root.getValue();
+        target = target - value;
+        // 出口
+        if (root.getLeft() == null && root.getRight()==null && target == 0){
+            path.add(value);
+            // 添加符合条件的路径
+            lists.add(path);
+
+        }
+
+        // 递归
+
+//        getPath(root.getLeft(),target,lists);
 
 
 
+    }
 
 
 
+    /**
+     * 二叉搜索树 的公共祖先(1)
+     *
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    public static TreeNode lowestCommonAncestorOne(TreeNode root, TreeNode p, TreeNode q) {
+
+        return null;
+    }
+
+    /**
+     * 二叉树的最近公共祖先.
+     * ----> 有递归和非递归两种实现方法。    在批改的时候多花点时间写一下。
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    public static TreeNode lowestCommonAncestorIIMethodOnePlus(TreeNode root, TreeNode p, TreeNode q) {
 
 
+        return null;
+    }
+
+    /**
+     * 54.二叉搜索树的第k大节点(简单：中序遍历，遍历出的结果是从小到大。再get(length - k)个元素)
+     *
+     * @param root
+     * @param k
+     * @return
+     */
+    public static int kthLargestOne(TreeNode root, int k) {
 
 
+        return 0;
+    }
 
+
+//=======================================================================================》分界线
 
     /**
      * 107. 二叉树的层序遍历 II
@@ -326,18 +422,19 @@ public class BinaryTree01 {
     }
 
     private static void findPaths(TreeNode root, StringBuffer stringBuffer, List<String> strings) {
-        if (root != null) {
-            StringBuffer tempString = new StringBuffer(stringBuffer);
-            tempString.append(root.getValue());
-            //叶子结点
-            if (root.getLeft() == null && root.getRight() == null) {
-                strings.add(tempString.toString());
-            } else {
-                //非叶子节点
-                tempString.append("->");
-                findPaths(root.getLeft(), tempString, strings);
-                findPaths(root.getRight(), tempString, strings);
-            }
+        if (root == null) {
+            return;
+        }
+        StringBuffer tempString = new StringBuffer(stringBuffer);
+        tempString.append(root.getValue());
+        //叶子结点
+        if (root.getLeft() == null && root.getRight() == null) {
+            strings.add(tempString.toString());
+        } else {
+            //非叶子节点
+            tempString.append("->");
+            findPaths(root.getLeft(), tempString, strings);
+            findPaths(root.getRight(), tempString, strings);
         }
     }
 
@@ -551,6 +648,8 @@ public class BinaryTree01 {
 
     /**
      * q34. 二叉树中和为某一值的路径
+     * 回溯法有点难以理解为什么那样写，其过程展开来很复杂。
+     * 在学习回溯的过程中，先按照自己的思路来写，理论上思路行得通就一定写得出来。
      *
      * @param root
      * @param target
@@ -775,6 +874,7 @@ public class BinaryTree01 {
     /**
      * 113.路径总和 II（中等）
      * 思路：能够递归写出root节点到叶子节点的路径，基本就ok了。
+     *
      * @param root
      * @param targetSum
      * @return
@@ -790,6 +890,7 @@ public class BinaryTree01 {
         if (root == null) {
             return;
         }
+        // 向队尾插入一个元素，即正常的排队。
         path.offerLast(root.getValue());
         targetSum -= root.getValue();
         if (root.getLeft() == null && root.getRight() == null && targetSum == 0) {
