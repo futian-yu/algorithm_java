@@ -126,7 +126,7 @@ public class BinaryTree01 {
         //深度优先，感觉应该也是用栈，该怎么用呢？思路？
         List<List<Integer>> lists = new ArrayList<>();
         Queue<Integer> queue = new LinkedList<>();
-        
+
 
         return null;
     }
@@ -134,6 +134,7 @@ public class BinaryTree01 {
     /**
      * 257. 二叉树的所有路径
      * 打印出二叉树的所有路径（根节点到叶子节点）
+     * 递归
      * <p>
      * ------------------》重刷
      * <p>
@@ -142,9 +143,35 @@ public class BinaryTree01 {
      * @return
      */
     public static List<String> binaryTreePathsOne(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        LinkedList<String> strings = new LinkedList<>();
+        StringBuffer stringBuffer = new StringBuffer();
+        findAllPathOne(root, strings, stringBuffer);
+        return strings;
+    }
 
-
-        return null;
+    /**
+     * 递归遍历所有路径
+     *
+     * @param root
+     * @param strings
+     * @param stringBuffer
+     */
+    public static void findAllPathOne(TreeNode root, LinkedList<String> strings, StringBuffer stringBuffer) {
+        if (root== null){
+            return;
+        }
+        stringBuffer.append(root.getValue());
+        //根节点
+        if (root.getLeft() == null && root.getRight() == null) {
+            strings.add(stringBuffer.toString());
+        } else {//非根节点
+            stringBuffer.append("->");
+            findAllPathOne(root.getLeft(),strings,stringBuffer);
+            findAllPathOne(root.getRight(),strings,stringBuffer);
+        }
     }
 
     /**
@@ -429,6 +456,7 @@ public class BinaryTree01 {
         if (root == null) {
             return;
         }
+        // 为什么这里一定要new一个StringBuffer ? 与直接使用stringBuffer有什么区别？
         StringBuffer tempString = new StringBuffer(stringBuffer);
         tempString.append(root.getValue());
         //叶子结点
