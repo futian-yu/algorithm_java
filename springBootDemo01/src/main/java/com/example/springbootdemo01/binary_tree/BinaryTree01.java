@@ -12,6 +12,7 @@ public class BinaryTree01 {
 
     /**
      * 后序 - 迭代
+     * 左右中  先序（中左右--》 转） 右左入栈
      *
      * @param root
      * @return
@@ -39,6 +40,7 @@ public class BinaryTree01 {
 
     /**
      * 求二叉树的层平均值
+     * 判断每一层的节点是否结束用队列queue.size();
      *
      * @param root
      * @return
@@ -102,7 +104,7 @@ public class BinaryTree01 {
         if (root == null) {
             return false;
         }
-        if (root.getLeft() == null && root.getRight() == null){
+        if (root.getLeft() == null && root.getRight() == null) {
             return root.getValue() == targetSum;
         }
 
@@ -112,8 +114,8 @@ public class BinaryTree01 {
 
 
     /**
-     * 113.路径总和 II（中等）
-     * ------------------》重刷
+     * 113.路径总和 II（中等）. 返回所有路径总和等于targetSum的路径集合。
+     * ------------------》1、重刷（递归）； 2、再试试把所有路径罗列出来，然后循环计算。
      *
      * @param root
      * @param targetSum
@@ -122,7 +124,9 @@ public class BinaryTree01 {
     public static List<List<Integer>> pathSumOne(TreeNode root, int targetSum) {
         //返回所有路径总和等于targetSum的路径。
         //深度优先，感觉应该也是用栈，该怎么用呢？思路？
-
+        List<List<Integer>> lists = new ArrayList<>();
+        Queue<Integer> queue = new LinkedList<>();
+        
 
         return null;
     }
@@ -130,7 +134,7 @@ public class BinaryTree01 {
     /**
      * 257. 二叉树的所有路径
      * 打印出二叉树的所有路径（根节点到叶子节点）
-     *
+     * <p>
      * ------------------》重刷
      * <p>
      *
@@ -139,12 +143,13 @@ public class BinaryTree01 {
      */
     public static List<String> binaryTreePathsOne(TreeNode root) {
 
+
         return null;
     }
 
     /**
      * q27二叉树的镜像（返回一棵树，该树为原来树的镜像）
-     *
+     * <p>
      * ------------------》重刷
      * <p>
      *
@@ -158,7 +163,7 @@ public class BinaryTree01 {
 
     /**
      * q28. 对称的二叉树
-     *
+     * <p>
      * ------------------》重刷
      *
      * @param root
@@ -182,7 +187,7 @@ public class BinaryTree01 {
 
     /**
      * q34. 二叉树中和为某一值的路径
-     *
+     * <p>
      * 先写返回list的吧，写完返回list的，将返回值改为List<String>的格式。
      *
      * @param root
@@ -199,18 +204,18 @@ public class BinaryTree01 {
         return null;
     }
 
-//            1
+    //            1
 //        2       3
 //      4   5    6
 //  target = 8
     private static void getPath(TreeNode root, int target, LinkedList<Integer> path, LinkedList<List<Integer>> lists) {
-        if (root == null){
+        if (root == null) {
             return;
         }
         int value = root.getValue();
         target = target - value;
         // 出口
-        if (root.getLeft() == null && root.getRight()==null && target == 0){
+        if (root.getLeft() == null && root.getRight() == null && target == 0) {
             path.add(value);
             // 添加符合条件的路径
             lists.add(path);
@@ -222,9 +227,7 @@ public class BinaryTree01 {
 //        getPath(root.getLeft(),target,lists);
 
 
-
     }
-
 
 
     /**
@@ -243,6 +246,7 @@ public class BinaryTree01 {
     /**
      * 二叉树的最近公共祖先.
      * ----> 有递归和非递归两种实现方法。    在批改的时候多花点时间写一下。
+     *
      * @param root
      * @param p
      * @param q
@@ -898,6 +902,7 @@ public class BinaryTree01 {
         }
         dfs(root.getLeft(), targetSum, ret, path);
         dfs(root.getRight(), targetSum, ret, path);
+        // 如果该路径不符合，把尾节点移除，继续下一个路径
         path.pollLast();
     }
 
