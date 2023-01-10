@@ -163,6 +163,7 @@ public class BinaryTree01 {
         if (root== null){
             return;
         }
+        // 此处为什么要new一个StringBuffer？
         stringBuffer.append(root.getValue());
         //根节点
         if (root.getLeft() == null && root.getRight() == null) {
@@ -215,50 +216,52 @@ public class BinaryTree01 {
     /**
      * q34. 二叉树中和为某一值的路径
      * <p>
-     * 先写返回list的吧，写完返回list的，将返回值改为List<String>的格式。
+     *
      *
      * @param root
      * @param target
      * @return
      */
     public static ArrayList<List<Integer>> findTargetPathOne(TreeNode root, int target) {
-        // 求出所有路径,自己添加要求，以->分隔开来   target
-        LinkedList<List<Integer>> lists = new LinkedList<>();
+        ArrayList<List<Integer>> lists = new ArrayList<>();
+        LinkedList<Integer> integers = new LinkedList<>();
 
         // 递归
-//        getPath(root,target,lists);
-
-        return null;
+        getPath(root,target,integers,lists);
+        return lists;
     }
 
     //            1
 //        2       3
 //      4   5    6
 //  target = 8
-    private static void getPath(TreeNode root, int target, LinkedList<Integer> path, LinkedList<List<Integer>> lists) {
+    private static void getPath(TreeNode root, int target, LinkedList<Integer> path, ArrayList<List<Integer>> lists) {
         if (root == null) {
             return;
         }
         int value = root.getValue();
+        path.add(value);
         target = target - value;
         // 出口
         if (root.getLeft() == null && root.getRight() == null && target == 0) {
-            path.add(value);
             // 添加符合条件的路径
             lists.add(path);
-
         }
 
         // 递归
-
-//        getPath(root.getLeft(),target,lists);
-
-
+        getPath(root.getLeft(),target,path,lists);
+        getPath(root.getRight(),target,path,lists);
+        // 如果一直遍历到叶子节点都不符合，就把该节点移除，否则该节点会一直留在path中；
+        path.removeLast();
     }
 
 
     /**
-     * 二叉搜索树 的公共祖先(1)
+     * 二叉搜索树 的最近公共祖先(1)
+     * 二叉搜索树：左子树 < root < 右子树
+     *
+     * 思路：？ 注意，这是二叉搜索树（左子树<root<右子树），所以找root节点到target节点的路径比较简单，比较大小即可。
+     * 找出p、q节点路径后，循环遍历，直到这两个list的最后一个相等的值即可。
      *
      * @param root
      * @param p
@@ -635,6 +638,7 @@ public class BinaryTree01 {
 
     /**
      * q28. 对称的二叉树
+     * 思路：递归、双指针，递归的出口条件要好好判断一下；
      *
      * @param root
      * @return
@@ -709,7 +713,7 @@ public class BinaryTree01 {
     }
 
     /**
-     * 二叉搜索树 的公共祖先(1)
+     * 二叉搜索树 的最近公共祖先(1)
      *
      * @param root
      * @param p

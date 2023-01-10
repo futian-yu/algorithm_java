@@ -22,7 +22,7 @@ public class Springbootdemo01Application {
 
     public static void main(String[] args) {
         //======================== 1. 二叉树相关 ========================
-        binaryTree01();
+//        binaryTree01();
         //1. 107. 后序 - 迭代法
         Integer[] data = new Integer[]{1, 2, 3};
         ArrayList<TreeNode> list = new ArrayList<>();
