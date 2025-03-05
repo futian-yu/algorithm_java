@@ -65,7 +65,7 @@ public class Springbootdemo01Application {
         //1）huaweiod
         convertWords("i am a student",2,3);
 
-//        SpringApplication.run(Springbootdemo01Application.class, args);
+        SpringApplication.run(Springbootdemo01Application.class, args);
     }
 
     /**
