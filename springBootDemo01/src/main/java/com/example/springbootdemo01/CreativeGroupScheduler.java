@@ -42,150 +42,150 @@ public class CreativeGroupScheduler {
     }
 
 
-//    /**
-//     * 股票代码与名称收集
-//     */
-//    @Scheduled(cron = "0 16 9 * * ?")
-//    public void getStockCodeSh() {
-//        log.info("getStockCodeSh start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockCodeSh.py");
-//    }
-//
-//    /**
-//     * 股票代码与名称收集
-//     */
-//    @Scheduled(cron = "0 17 9 * * ?")
-//    public void getStockCodeSz() {
-//        log.info("getStockCodeSz start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockCodeSz.py");
-//    }
-//
-//    /**
-//     * 股票基本信息收集
-//     */
-//    @Scheduled(cron = "0 18 9 * * ?")
-//    public void getStockInfo() {
-//        log.info("getStockInfo start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockInfo.py");
-//    }
-//
-//
-//    /**
-//     * 上午主力抢筹推荐
-//     */
-//    @Scheduled(cron = "0 15 11 * * ?")
-//    public void recommend() {
-//        log.info("recommend start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataAnalysis\\zlqc_recommend.py");
-//    }
-//
-//    /**
-//     * python测试
-//     */
-//    @Scheduled(cron = "0 45 14 * * ?")
-//    public void testPython() {
-//        log.info("testPython start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataAnalysis\\Hello.py", "14:43:00", "14:45:00");
-//    }
-//
-//    /**
-//     * 下午主力抢筹推荐
-//     */
-//    @Scheduled(cron = "0 40 14 * * ?")
-//    public void recommend2() {
-//        log.info("recommend2 start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataAnalysis\\zlqc_recommend.py");
-//    }
-//
-//    /**
-//     * 行业板块信息收集
-//     */
-//    @Scheduled(cron = "0 10 15 * * ?")
-//    public void getBoardInfo() {
-//        log.info("getBoardInfo start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockBoard\\getBoardInfo.py");
-//    }
-//
-//    /**
-//     * 行业板块成分股收集
-//     */
-//    @Scheduled(cron = "0 15 15 * * ?")
-//    public void getStockBoardRelation() {
-//        log.info("getStockBoardRelation start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockBoard\\getStockBoardRelation.py");
-//    }
-//
-//    /**
-//     * 资金流向信息收集
-//     */
-//    @Scheduled(cron = "0 0/1 * * * ?")
-//    public void getSectorMainFlow() {
-//        log.info("getSectorMainFlow start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockBoard\\getSectorMainFlow.py");
-//    }
-//
-//    /**
-//     * 股票内外盘信息收集
-//     */
-//    @Scheduled(cron = "30 0/5 * * * ?")
-//    public void getStockTradeData() {
-//        log.info("getStockTradeData start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockTrade\\getStockTradeData.py");
-//    }
-//
-//    /**
-//     * 股票股东信息收集
-//     */
-//    @Scheduled(cron = "0 20 15 * * ?")
-//    public void getStockHolderData() {
-//        log.info("getStockHolderData start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockHolderData.py");
-//    }
-//
-//    /**
-//     * 股票业绩信息收集
-//     */
-//    @Scheduled(cron = "0 25 15 * * ?")
-//    public void getStockFinancialData() {
-//        log.info("getStockFinancialData start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockFinancialData.py");
-//    }
-//
-//    /**
-//     * 股票业绩预测
-//     */
-//    @Scheduled(cron = "0 30 15 * * ?")
-//    public void getStockPerformanceForecastData() {
-//        log.info("getStockPerformanceForecastData start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockPerformanceForecastData.py");
-//    }
-//
-//    /**
-//     * 概念板块信息收集
-//     */
-//    @Scheduled(cron = "0 35 15 * * ?")
-//    public void getStockBoardConceptName() {
-//        log.info("getStockBoardConceptName start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockBoard\\getStockBoardConceptName.py");
-//    }
-//
-//    /**
-//     * 概念板块成分股收集
-//     */
-//    @Scheduled(cron = "0 40 15 * * ?")
-//    public void getStockBoardConceptRelation() {
-//        log.info("getStockBoardConceptRelation start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockBoard\\getStockBoardConceptRelation.py");
-//    }
-//
-//    /**
-//     * 人气排名收集
-//     */
-//    @Scheduled(cron = "0 0 20 * * ?")
-//    public void getStockHotRank() {
-//        log.info("getStockHotRank start.....");
-//        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockTrade\\getStockHotRank.py");
-//    }
+    /**
+     * 股票代码与名称收集
+     */
+    @Scheduled(cron = "0 16 9 * * ?")
+    public void getStockCodeSh() {
+        log.info("getStockCodeSh start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockCodeSh.py");
+    }
+
+    /**
+     * 股票代码与名称收集
+     */
+    @Scheduled(cron = "0 17 9 * * ?")
+    public void getStockCodeSz() {
+        log.info("getStockCodeSz start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockCodeSz.py");
+    }
+
+    /**
+     * 股票基本信息收集
+     */
+    @Scheduled(cron = "0 18 9 * * ?")
+    public void getStockInfo() {
+        log.info("getStockInfo start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockInfo.py");
+    }
+
+
+    /**
+     * 上午主力抢筹推荐
+     */
+    @Scheduled(cron = "0 15 11 * * ?")
+    public void recommend() {
+        log.info("recommend start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataAnalysis\\zlqc_recommend.py");
+    }
+
+    /**
+     * python测试
+     */
+    @Scheduled(cron = "0 45 14 * * ?")
+    public void testPython() {
+        log.info("testPython start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataAnalysis\\Hello.py", "14:43:00", "14:45:00");
+    }
+
+    /**
+     * 下午主力抢筹推荐
+     */
+    @Scheduled(cron = "0 40 14 * * ?")
+    public void recommend2() {
+        log.info("recommend2 start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataAnalysis\\zlqc_recommend.py");
+    }
+
+    /**
+     * 行业板块信息收集
+     */
+    @Scheduled(cron = "0 10 15 * * ?")
+    public void getBoardInfo() {
+        log.info("getBoardInfo start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockBoard\\getBoardInfo.py");
+    }
+
+    /**
+     * 行业板块成分股收集
+     */
+    @Scheduled(cron = "0 15 15 * * ?")
+    public void getStockBoardRelation() {
+        log.info("getStockBoardRelation start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockBoard\\getStockBoardRelation.py");
+    }
+
+    /**
+     * 资金流向信息收集
+     */
+    @Scheduled(cron = "0 0/1 * * * ?")
+    public void getSectorMainFlow() {
+        log.info("getSectorMainFlow start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockBoard\\getSectorMainFlow.py");
+    }
+
+    /**
+     * 股票内外盘信息收集
+     */
+    @Scheduled(cron = "30 0/5 * * * ?")
+    public void getStockTradeData() {
+        log.info("getStockTradeData start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockTrade\\getStockTradeData.py");
+    }
+
+    /**
+     * 股票股东信息收集
+     */
+    @Scheduled(cron = "0 20 15 * * ?")
+    public void getStockHolderData() {
+        log.info("getStockHolderData start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockHolderData.py");
+    }
+
+    /**
+     * 股票业绩信息收集
+     */
+    @Scheduled(cron = "0 25 15 * * ?")
+    public void getStockFinancialData() {
+        log.info("getStockFinancialData start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockFinancialData.py");
+    }
+
+    /**
+     * 股票业绩预测
+     */
+    @Scheduled(cron = "0 30 15 * * ?")
+    public void getStockPerformanceForecastData() {
+        log.info("getStockPerformanceForecastData start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockInfo\\getStockPerformanceForecastData.py");
+    }
+
+    /**
+     * 概念板块信息收集
+     */
+    @Scheduled(cron = "0 35 15 * * ?")
+    public void getStockBoardConceptName() {
+        log.info("getStockBoardConceptName start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockBoard\\getStockBoardConceptName.py");
+    }
+
+    /**
+     * 概念板块成分股收集
+     */
+    @Scheduled(cron = "0 40 15 * * ?")
+    public void getStockBoardConceptRelation() {
+        log.info("getStockBoardConceptRelation start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockBoard\\getStockBoardConceptRelation.py");
+    }
+
+    /**
+     * 人气排名收集
+     */
+    @Scheduled(cron = "0 0 20 * * ?")
+    public void getStockHotRank() {
+        log.info("getStockHotRank start.....");
+        runPython("D:\\workspace\\python\\AkShare\\dataMining\\stockTrade\\getStockHotRank.py");
+    }
 
 
     private void runPython(String path, String... args) {
