@@ -25,11 +25,13 @@ public class CreativeGroupScheduler {
     /**
      * 上午首板推荐策略
      * shizhi的条件不能加，因为板块资金可能主要流入排名第一的gp，排除掉500y以上的，误判率就增加了。   没有合适的就kongcang即可。
+     *
+     * 由于实时数据写入有几秒相差时间，执行时间先往后推迟10s看看
      */
-    @Scheduled(cron = "0 32 9 * * ?")
+    @Scheduled(cron = "10 32 9 * * ?")
     public void sbRecommend() {
         log.info("sbRecommend start.....");
-        runPython("D:\\workspace\\python\\AkShare\\dataAnalysis\\sb_recommend.py", "09:30:00", "09:32:00");
+        runPython("D:\\workspace\\python\\AkShare\\dataAnalysis\\sb_recommend.py", "09:30:00", "09:32:10");
     }
 
     /**
